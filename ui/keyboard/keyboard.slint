@@ -1,0 +1,75 @@
+export global KeyboardState {
+    //these are the keys of the piano with a boolean state indicating if they're pressed or not
+    in-out property <[bool]> white-active-keys: [
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false
+    ];
+    in-out property <[bool]> black-active-keys: [
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false, false, false, false, false,
+        false, false, false, false, false, false
+    ];
+}
+
+component WhiteKey inherits Rectangle {
+    in property <int> key-number;
+    in-out property <bool> active: false;
+    width: 20px;
+    height: 120px;
+    background: active ? #ffffff : #00000000;
+    border-width: 1px;
+    border-color: white;
+    border-radius: 3px;
+    z: 0;
+}
+
+component BlackKey inherits Rectangle {
+    in property <int> key-number;
+    in-out property <bool> active: false;
+    width: 12px;
+    height: 75px;
+    background: active ? #ffffff : #18599e;
+    border-width: 2px;
+    border-color: white;
+    border-radius: 5px;
+    z: 1;
+}
+
+//this is the entire keyboard you see on the screen
+export component Keyboard inherits Rectangle {
+    width: 1150px;
+    height: 140px;
+
+    Rectangle {
+        x: 10px;
+        y: 10px;
+        for i in 52 : WhiteKey {
+            x: i * 22px;
+            y: 0px;
+            key-number: i;
+            active: KeyboardState.white-active-keys[i];
+        }
+        for white-idx[i] in [
+
+            0,
+
+            2, 3, 5, 6, 7,
+            9, 10, 12, 13, 14,
+            16, 17, 19, 20, 21,
+            23, 24, 26, 27, 28,
+            30, 31, 33, 34, 35,
+            37, 38, 40, 41, 42,
+            44, 45, 47, 48, 49
+        ] : BlackKey {
+            x: (white-idx * 22px) + 15px;
+            y: 0px;
+            key-number: i;
+            active: KeyboardState.black-active-keys[i];
+        }
+    }
+}

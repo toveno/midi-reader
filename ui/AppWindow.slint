@@ -1,0 +1,47 @@
+import { Keyboard, KeyboardState } from "keyboard/keyboard.slint";
+import { VerticalBox } from "std-widgets.slint";
+export { KeyboardState }
+
+
+export component MainWindow inherits Window {
+    height: 600px;
+    width: 1400px;
+    background: #18599e;
+    //full-screen: true;
+    VerticalBox {
+        alignment: center;
+        Text {
+            text: "Midi-Reader";
+            font-size: 64px;
+            horizontal-alignment: center;
+            font-weight: 1200;
+        }
+
+        //I plan on adding a chord identifier that will appear on top of your keyboard
+        //it tells you the notes you are playing and their chord symbols
+
+        //Text {
+        //    text: "C7(no5)";
+        //    font-size: 64px;
+        //    horizontal-alignment: center;
+        //}
+        //Text {
+        //    text: "C4, E4, Bb4";
+        //    font-size: 12px;
+        //    horizontal-alignment: center;
+        //    opacity: 0.25;
+        //}
+        HorizontalLayout {
+            alignment: center;
+             Keyboard {
+  }
+        }
+        
+    }
+    
+}
+    
+    
+    
+    
+    
